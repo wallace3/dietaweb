@@ -19,6 +19,7 @@
                 <b-thead>
                     <b-tr>
                         <b-th @click="sortTable('name')">Nombre</b-th>
+                        <b-th @click="sortTable('url')">Imagen</b-th>
                         <b-th @click="sortTable('created_at')">Fecha de Creación</b-th>
                         <b-th @click="sortTable('updated_at')">Fecha Actualización</b-th>
                         <b-th @click="sortTable('status')">Estatus</b-th>
@@ -28,6 +29,7 @@
                 <b-tbody>
                     <b-tr  v-for="category in filteredCategories" :key="category.idCategory">
                         <b-td>{{ category.name }}</b-td>
+                        <b-td><img :src="'http://localhost:8080/' + category.url" class="product-img"/></b-td>
                         <b-td>{{ category.created_at }}</b-td>
                         <b-td>{{ category.updated_at }}</b-td>
                         <b-td>{{ category.status == 1 ? 'Activo' : 'Inactivo' }}</b-td>
@@ -53,6 +55,23 @@
 
     <b-modal v-model="verticalCenteredModal" title="Agregar nueva categoría" ok-title="Guardar Categoría" @ok="saveChanges()" cancel-title="Cancelar" centered>
       <input type="text" v-model="category" class="form-control" placeholder="Escriba categoría...">
+      <div
+        class="dropzone-container"
+        @dragover="dragover"
+        @dragleave="dragleave"
+        @drop="drop"
+      >
+      <input
+      type="file"
+    name="file"
+    id="fileInput"
+    class="hidden-input"
+    @change="onChange"
+    ref="fileInput"
+    accept=".pdf,.jpg,.jpeg,.png"
+        />
+      </div>
+  
     </b-modal>
 
     <b-modal v-model="successAlertModal" hide-header hide-footer size="sm" content-class="modal-filled bg-success">
@@ -82,6 +101,8 @@
   const sortDirection = ref('asc'); // ascendente o descendente
   const itemsPerPage = ref(10); // Número de items por página
   const currentPage = ref(1); // Página actual    
+  const fileInput = ref(null);
+  const selectedFile = ref();  // un solo archivo
   
   // Función para obtener las categorías desde el backend
   const getCategories = async () => {
@@ -96,17 +117,25 @@
       console.error('Error en la petición:', error);
     }
   };
+
+  function onChange(){
+    const input = fileInput.value;
+    if (input?.files && input.files.length > 0) {
+      selectedFile.value = input.files[0];
+    }
+  }
   
   // Función para guardar una nueva categoría
   const saveChanges = async () => {
+    const formData = new FormData();
+    formData.append('name', category.value);
+    formData.append('status', 1);
+    formData.append('image', selectedFile.value); // el archivo
     if (category.value.trim()) {
       try {
         const response = await fetch('http://localhost:8080/categories', {
           method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ name: category.value, status: 1 })
+          body: formData
         });
         if (!response.ok) {
           throw new Error('Error al guardar la categoría');
@@ -194,3 +223,14 @@ const changePage = (page) => {
     getCategories();
   });
   </script>
+
+<style>
+ .dropzone-container {
+    padding: 4rem;
+    background: #f7fafc;
+    border: 1px solid #e2e8f0;
+  }
+  .product-img{
+   width: 150px;
+  }
+</style>

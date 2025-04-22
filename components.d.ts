@@ -71,6 +71,7 @@ declare module 'vue' {
     ChoicesSelect: typeof import('./src/components/ChoicesSelect.vue')['default']
     DropDown: typeof import('./src/components/DropDown.vue')['default']
     DropFile: typeof import('./src/components/DropFile.vue')['default']
+    DropFileBanner: typeof import('./src/components/DropFileBanner.vue')['default']
     FlatPicker: typeof import('./src/components/FlatPicker.vue')['default']
     GridJsTable: typeof import('./src/components/GridJsTable.vue')['default']
     InputMask: typeof import('./src/components/InputMask.vue')['default']
