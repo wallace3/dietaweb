@@ -162,6 +162,17 @@ const bannerRoutes = [
     }
 ]
 
+const bidsRoutes = [
+    {
+        path: '/bids',
+        name: 'bids.bids',
+        meta: {
+            title: setTitle('Bids'),
+            authRequired: true
+        },
+        component: () => import('@/views/bids/bids.vue')
+    }
+]
 
 const productsRoutes = [
     {
@@ -830,4 +841,4 @@ const mapsRoutes = [
     }
 ];
 
-export const allRoutes = [...dashboardRoutes, ...pagesRoutes, ...errorRoutes, ...authRoutes, ...appsRoutes, ...uiRoutes, ...advancedUIRoutes, ...chartsRoutes, ...formRoutes, ...tablesRoutes, ...iconsRoutes, ...mapsRoutes, ...userRoutes, ...productsRoutes, ...bannerRoutes];
+export const allRoutes = [...dashboardRoutes, ...pagesRoutes, ...errorRoutes, ...authRoutes, ...appsRoutes, ...uiRoutes, ...advancedUIRoutes, ...chartsRoutes, ...formRoutes, ...tablesRoutes, ...iconsRoutes, ...mapsRoutes, ...userRoutes, ...productsRoutes, ...bannerRoutes, ...bidsRoutes];
