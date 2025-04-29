@@ -151,6 +151,8 @@ function onChange(){
   if (input?.files && input.files.length > 0) {
     selectedFile.value = input.files[0];
   }
+  console.log(selectedFile);
+  
 }
   
 // Función para guardar una nueva categoría

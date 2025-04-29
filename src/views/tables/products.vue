@@ -294,6 +294,10 @@
       }
     }
 
+    const deleteProduct = async (id) => {
+      
+    }
+
     const getUsers = async () => {
         try {
             const response =  await fetch('http://localhost:8080/users');
