@@ -174,6 +174,27 @@ const bidsRoutes = [
     }
 ]
 
+const storeRoutes = [
+    {
+        path: '/wishlist',
+        name: 'store.wishlist',
+        meta: {
+            title: setTitle('Wishlist'),
+            authRequired: true
+        },
+        component: () => import('@/views/shop/wishlist.vue')
+    },
+    {
+        path: '/cart',
+        name: 'store.cart',
+        meta: {
+            title: setTitle('Cart'),
+            authRequired: true
+        },
+        component: () => import('@/views/shop/cart.vue')
+    }
+]
+
 const productsRoutes = [
     {
         path: '/products',
@@ -841,4 +862,4 @@ const mapsRoutes = [
     }
 ];
 
-export const allRoutes = [...dashboardRoutes, ...pagesRoutes, ...errorRoutes, ...authRoutes, ...appsRoutes, ...uiRoutes, ...advancedUIRoutes, ...chartsRoutes, ...formRoutes, ...tablesRoutes, ...iconsRoutes, ...mapsRoutes, ...userRoutes, ...productsRoutes, ...bannerRoutes, ...bidsRoutes];
+export const allRoutes = [...dashboardRoutes, ...pagesRoutes, ...errorRoutes, ...authRoutes, ...appsRoutes, ...uiRoutes, ...advancedUIRoutes, ...chartsRoutes, ...formRoutes, ...tablesRoutes, ...iconsRoutes, ...mapsRoutes, ...userRoutes, ...productsRoutes, ...bannerRoutes, ...bidsRoutes, ...storeRoutes];
