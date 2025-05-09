@@ -129,7 +129,7 @@ const sortDirection = ref('asc'); // ascendente o descendente
 const itemsPerPage = ref(10); // Número de items por página
 const currentPage = ref(1); // Página actual    
 const fileInput = ref(null);
-const selectedFile = ref();  // un solo archivo
+const selectedFile = ref('');  // un solo archivo
 const editModal = ref(false);
 
 // Función para obtener las categorías desde el backend
@@ -152,7 +152,6 @@ function onChange(){
     selectedFile.value = input.files[0];
   }
   console.log(selectedFile);
-  
 }
   
 // Función para guardar una nueva categoría

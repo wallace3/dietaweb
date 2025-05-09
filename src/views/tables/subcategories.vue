@@ -55,7 +55,17 @@
 
 
     <b-modal v-model="verticalCenteredModal" title="Agregar nueva subcategorías" ok-title="Guardar subcategorías" @ok="saveChanges()" cancel-title="Cancelar" centered>
-      <input type="text" v-model="subcategory" class="form-control" placeholder="Escriba subcategoría...">
+        <div class="form-group">
+            <label for="product">Subcategoría</label>
+            <input type="text" v-model="subcategory" class="form-control" placeholder="Escriba subcategoría...">
+        </div>
+        <div class="form-group">
+            <label for="product">Categoría</label>
+            <select class = "form-select" v-model="category" >
+                <option selected>-- Seleccione --</option>
+                <option v-for="cat in categories" :key="cat.idCategory" v-bind:value="cat.idCategory">{{ cat.name }}</option>
+            </select>
+        </div>
     </b-modal>
 
     <b-modal v-model="successAlertModal" hide-header hide-footer size="sm" content-class="modal-filled bg-success">
@@ -177,7 +187,7 @@
           headers: {
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify({ name: subcategory.value, status: 1 })
+          body: JSON.stringify({ name: subcategory.value, status: 1, idCategory: category.value  })
         });
         if (!response.ok) {
           throw new Error('Error al guardar la subcategorías');

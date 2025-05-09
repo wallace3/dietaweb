@@ -68,6 +68,17 @@ export const MENU_ITEMS: MenuItemType[] = [
         route: {name: 'banners.banners'}
     }, 
     {
+        key: 'auctions',
+        label: 'SUBASTAS',
+        isTitle: true,
+    },
+    {
+        key:'auctions',
+        icon: 'solar:sledgehammer-bold-duotone',
+        label: 'Subastas',
+        route: {name: 'auctions.auctions'}
+    }, 
+    {
         key: 'bids',
         label: 'PUJAS',
         isTitle: true,

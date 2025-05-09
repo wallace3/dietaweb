@@ -150,6 +150,18 @@ const userRoutes = [
     }
 ]
 
+const auctionRoutes = [
+    {
+        path: '/auctions',
+        name: 'auctions.auctions',
+        meta: {
+            title: setTitle('Auctions'),
+            authRequired: true
+        },
+        component: () => import('@/views/auctions/auctions.vue')
+    }
+]
+
 const bannerRoutes = [
     {
         path: '/banners',
@@ -862,4 +874,4 @@ const mapsRoutes = [
     }
 ];
 
-export const allRoutes = [...dashboardRoutes, ...pagesRoutes, ...errorRoutes, ...authRoutes, ...appsRoutes, ...uiRoutes, ...advancedUIRoutes, ...chartsRoutes, ...formRoutes, ...tablesRoutes, ...iconsRoutes, ...mapsRoutes, ...userRoutes, ...productsRoutes, ...bannerRoutes, ...bidsRoutes, ...storeRoutes];
+export const allRoutes = [...dashboardRoutes, ...pagesRoutes, ...errorRoutes, ...authRoutes, ...appsRoutes, ...uiRoutes, ...advancedUIRoutes, ...chartsRoutes, ...formRoutes, ...tablesRoutes, ...iconsRoutes, ...mapsRoutes, ...userRoutes, ...productsRoutes, ...bannerRoutes, ...bidsRoutes, ...storeRoutes, ...auctionRoutes];
