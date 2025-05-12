@@ -78,23 +78,23 @@ const getBanners = async () => {
 
 
 const deleteBanner = async (id) => {
-      try {
-        const response = await fetch(`http://localhost:8080/banners/${id}`, {
-          method: 'DELETE',
-          headers: {
-            'Content-Type': 'application/json',
-          }
-        });
-        if (!response.ok) {
-          throw new Error('Error al eliminar la imágen');
-        }
-        successAlertModal.value = true;
-        message.value = "Imagen eliminada correctamente";
-        getBanners();
-      } catch (error) {
-        console.error('Error al guardar la imagen:', error);
+  try {
+    const response = await fetch(`http://localhost:8080/banners/${id}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
       }
+    });
+    if (!response.ok) {
+      throw new Error('Error al eliminar la imágen');
     }
+    successAlertModal.value = true;
+    message.value = "Imagen eliminada correctamente";
+    getBanners();
+  } catch (error) {
+    console.error('Error al guardar la imagen:', error);
+  }
+}
 
   
 onMounted(()=>{

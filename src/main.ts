@@ -27,6 +27,7 @@ import 'gridjs/dist/theme/mermaid.min.css'
 import 'choices.js/src/styles/choices.scss'
 import '@vueup/vue-quill/dist/vue-quill.snow.css'
 import '@vueup/vue-quill/dist/vue-quill.bubble.css'
+import 'bootstrap-select'
 
 import 'bootstrap-vue-next/dist/bootstrap-vue-next.css'
 import '@/assets/scss/app.scss'

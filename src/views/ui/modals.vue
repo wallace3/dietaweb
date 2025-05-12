@@ -213,7 +213,7 @@
       </div>
     </b-modal>
 
-    <b-modal v-model="infoAlertModal" hide-header hide-footer size="sm" content-class="modal-filled bg-info">
+    <b-modal v-model="infoAlertModal" hide-header hide-footer size="sm" content-class="modal-filled bg-danger">
       <div class="text-center">
         <i class="bx bx-check-double display-6 mt-0 text-white"></i>
         <h4 class="mt-3 text-white">Well Done!</h4>
