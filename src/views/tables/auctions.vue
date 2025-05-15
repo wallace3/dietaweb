@@ -80,7 +80,7 @@
       </div>
     </b-modal>
 
-     <b-modal v-model="editModal" title="Editar Subasta" ok-title="Actualizar" @ok="saveAuction()" cancel-title="Cancelar" centered>
+     <b-modal v-model="editModal" title="Editar Subasta" ok-title="Actualizar" @ok="updateAuction()" cancel-title="Cancelar" centered>
       <div class="form-group">
         <label>Nombre Subasta</label>
         <input type="text" v-model="auctionName" class="form-control" placeholder="Nombre de Subasta">
@@ -243,6 +243,8 @@ function onChange(){
     if (input?.files && input.files.length > 0) {
         selectedFile.value = input.files[0];
     }
+    console.log(selectedFile.value);
+    
 }
 
 const saveAuction = async () => {
@@ -279,11 +281,47 @@ const saveAuction = async () => {
     }
 };
 
+const updateAuction = async () => {
+    const formData = new FormData();
+    formData.append('auction', auctionName.value);
+    formData.append('status', 1);
+    formData.append('idUser', 1);
+    formData.append('description', description.value);
+    formData.append('startDate', startDate.value);
+    formData.append('endDate', endDate.value);
+    formData.append('image_url', selectedFile.value);
+    if (auctionName.value.trim()) {
+        try {
+            const response = await fetch(`http://localhost:8080/auction/update/${idAuction.value}`, {
+                method: 'POST',
+                body: formData
+            });
+            if (!response.ok) {
+                throw new Error('Error al guardar la subasta');
+            }
+            successAlertModal.value = true;
+            auctionName.value = '';
+            description.value= '';
+            startDate.value = '';
+            endDate.value = '';
+            idAuction.value = '';
+            selectedFile.value = '';
+            message.value = 'Se actualizo subasta correctamente.';
+            getAuctions(); 
+        } catch (error) {
+            console.error('Error al actualizar la subasta:', error);
+        }
+    } else {
+        alert('Por favor, ingrese una categoría.');
+    }
+};
+
 const editAuction = async (data) =>{
   editModal.value = true;
   auctionName.value = data.name;
   description.value = data.description;
   startDate.value = data.startTime;
+  idAuction.value = data.idAuction;
   endDate.value = data.endTime;
 }
 
@@ -303,6 +341,25 @@ const deleteProductFromAuction = async(id) => {
       addProductModal(id);
   }catch (error) {
     console.error('Error al guardar la imagen:', error);
+  }
+}
+
+const deleteAuction = async(id) => {
+  try{
+    const response = await fetch(`http://localhost:8080/auction/${id}`,{
+      method:"DELETE",
+      header: {
+        'Content-Type' : 'application/json'
+      }
+    })
+    if(!response.ok){
+      throw new Error('Error al eliminar subasta')
+    }
+    successAlertModal.value = true; 
+    message.value = "Subasta eliminada correctamente";
+    getAuctions();
+  }catch(error){
+    console.log("error al eliminar subasta", error);
   }
 }
 
