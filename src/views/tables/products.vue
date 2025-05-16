@@ -295,7 +295,23 @@
     }
 
     const deleteProduct = async (id) => {
-      
+       try {
+        const response = await fetch(`http://localhost:8080/products/deactivate/${id}`, {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ status:0 })
+        });
+        if (!response.ok) {
+          throw new Error('Error al guardar la categoría');
+        }
+        successAlertModal.value = true;
+        message.value = "Imagen se elimin´p producto correctamente";
+        getProducts();
+      } catch (error) {
+        console.error('Error al guardar el producto:', error);
+      }
     }
 
     const getUsers = async () => {
