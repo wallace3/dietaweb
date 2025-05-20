@@ -18,6 +18,7 @@
                         <b-th @click="sortTable('endTime')">F. Final</b-th>
                         <b-th @click="sortTable('created_at')">F. Creación</b-th>
                         <b-th @click="sortTable('updated_at')">F. Actualización</b-th>
+                        <b-th @click="sortTable('amount')">Puja</b-th>
                         <b-th @click="sortTable('status')">Status</b-th>
                         <b-th>Acciones</b-th>
                     </b-tr>
@@ -30,6 +31,7 @@
                         <b-td>{{ auction.endTime }}</b-td>
                         <b-td>{{ auction.created_at }}</b-td>
                         <b-td>{{ auction.updated_at }}</b-td>
+                        <b-td>{{ auction.amount }}</b-td>
                         <b-td>{{ auction.status == 1 ? 'Activo' : 'Inactivo' }}</b-td>
                         <b-td>
                             <button @click="deleteAuction(auction.idAuction)" class="btn btn-sm btn-danger" style="margin-right:5px;">
@@ -73,6 +75,10 @@
         <input type="datetime-local" v-model="endDate" class="form-control" placeholder="Nombre de Subasta">
       </div>
       <div class="form-group">
+        <label>Cantidad de Puja</label>
+        <input type="number" v-model="amount" class="form-control" placeholder="Cantidad de puja">
+      </div>
+      <div class="form-group">
         <label>Añadir imagen</label>
         <div class="dropzone-container"  @dragover="dragover" @dragleave="dragleave" @drop="drop">
         <input type="file" name="file" id="fileInput" class="hidden-input" @change="onChange" ref="fileInput" accept=".pdf,.jpg,.jpeg,.png"/>
@@ -96,6 +102,10 @@
       <div class="form-group">
         <label>Fecha de termino</label>
         <input type="datetime-local" v-model="endDate" class="form-control" placeholder="Nombre de Subasta">
+      </div>
+      <div class="form-group">
+        <label>Cantidad de Puja</label>
+        <input type="number" v-model="amount" class="form-control" placeholder="Cantidad de puja">
       </div>
       <div class="form-group">
         <label>Añadir imagen</label>
@@ -187,6 +197,7 @@ const searchQuery = ref('');
 const auctions = ref([]);
 const auctionName = ref('');
 const description = ref('');
+const amount = ref('');
 const startDate = ref('');
 const endDate = ref('');
 const message = ref('');
@@ -254,6 +265,7 @@ const saveAuction = async () => {
     formData.append('idUser', 1);
     formData.append('description', description.value);
     formData.append('startDate', startDate.value);
+    formData.append('amount', amount.value);
     formData.append('endDate', endDate.value);
     formData.append('image_url', selectedFile.value);
     if (auctionName.value.trim()) {
@@ -270,6 +282,7 @@ const saveAuction = async () => {
             description.value= '';
             startDate.value = '';
             endDate.value = '';
+            amount.value = '';
             selectedFile.value = '';
             message.value = 'Se creo categoría correctamente';
             getAuctions(); 
