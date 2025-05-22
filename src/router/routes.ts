@@ -159,6 +159,24 @@ const auctionRoutes = [
             authRequired: true
         },
         component: () => import('@/views/auctions/auctions.vue')
+    },
+    {
+        path: '/results',
+        name: 'auctions.results',
+        meta: {
+            title: setTitle('Results'),
+            authRequired: true
+        },
+        component: () => import('@/views/auctions/results.vue')
+    },
+     {
+        path: '/underbidders',
+        name: 'auctions.underbidders',
+        meta: {
+            title: setTitle('Underbidders'),
+            authRequired: true
+        },
+        component: () => import('@/views/auctions/underbidders.vue')
     }
 ]
 
