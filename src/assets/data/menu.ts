@@ -79,6 +79,12 @@ export const MENU_ITEMS: MenuItemType[] = [
         route: {name: 'auctions.auctions'}
     }, 
     {
+        key:'bids',
+        icon: 'solar:sledgehammer-bold',
+        label: 'Pujas',
+        route: {name: 'bids.bids'}
+    }, 
+    {
         key:'results',
         icon: 'solar:sledgehammer-bold-duotone',
         label: 'Resultados de Subastas',
@@ -91,15 +97,15 @@ export const MENU_ITEMS: MenuItemType[] = [
         route: {name: 'auctions.underbidders'}
     }, 
     {
-        key: 'bids',
-        label: 'PUJAS',
+        key: 'orders',
+        label: 'Ventas',
         isTitle: true,
     },
     {
-        key:'bids',
+        key:'orders',
         icon: 'solar:sledgehammer-bold',
-        label: 'Pujas',
-        route: {name: 'bids.bids'}
+        label: 'Ventas tienda',
+        route: {name: 'orders.orders'}
     }, 
     {
         key: 'reports',

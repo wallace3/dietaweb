@@ -125,11 +125,11 @@ const searchQuery = ref('');
 const sortKey = ref('');
 const message = ref('');
 const verticalCenteredModal = ref(false);
-const sortDirection = ref('asc'); // ascendente o descendente
-const itemsPerPage = ref(10); // Número de items por página
-const currentPage = ref(1); // Página actual    
+const sortDirection = ref('asc'); 
+const itemsPerPage = ref(10); 
+const currentPage = ref(1);   
 const fileInput = ref(null);
-const selectedFile = ref('');  // un solo archivo
+const selectedFile = ref('');  
 const editModal = ref(false);
 
 // Función para obtener las categorías desde el backend
