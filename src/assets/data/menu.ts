@@ -93,7 +93,7 @@ export const MENU_ITEMS: MenuItemType[] = [
     {
         key:'underbidders',
         icon: 'solar:sledgehammer-bold-duotone',
-        label: 'Undebidders',
+        label: 'Underbidders',
         route: {name: 'auctions.underbidders'}
     }, 
     {
@@ -103,9 +103,15 @@ export const MENU_ITEMS: MenuItemType[] = [
     },
     {
         key:'orders',
-        icon: 'solar:sledgehammer-bold',
-        label: 'Ventas tienda',
+        icon: 'solar:reorder-bold',
+        label: 'Ventas en tienda completadas',
         route: {name: 'orders.orders'}
+    }, 
+    {
+        key:'unpaidorders',
+        icon: 'solar:notification-lines-remove-line-duotone',
+        label: 'Ventas tienda incompletas',
+        route: {name: 'orders.unpaidorders'}
     }, 
     {
         key: 'reports',

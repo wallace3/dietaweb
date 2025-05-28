@@ -2,7 +2,7 @@
     <div>
       <!-- Tabla de ordenes -->
         <b-row>
-            <UIComponentCard id="basic" title="Tabla de Ordenes">
+            <UIComponentCard id="basic" title="Tabla de ordenes incompletas">
                 <b-table-simple responsive class="table-centered mb-0">
                     <b-thead>
                         <b-tr>
@@ -86,7 +86,7 @@
 
     const getOrders = async()=>{
         try{
-            const response = await fetch('http://localhost:8080/stripe/paidOrders');
+            const response = await fetch('http://localhost:8080/stripe/unpaidOrders');
             if(!response.ok){
                 throw new Error(`Error HTTP: ${response.status}`);
             }

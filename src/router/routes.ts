@@ -213,6 +213,15 @@ const orderRoutes = [
             authRequired: true
         },
         component: () => import('@/views/orders/orders.vue')
+    },
+     {
+        path: '/unpaid-orders',
+        name: 'orders.unpaidorders',
+        meta: {
+            title: setTitle('Unpaid Orders'),
+            authRequired: true
+        },
+        component: () => import('@/views/orders/unpaid-orders.vue')
     }
 ]
 
